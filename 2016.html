@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Class of 2016</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="classNamesCSS.css">
+    </head>
+    <body>
+        <div id="header">
+            <h1> Welcome to Mitty trivia! </h1>
+            <h2> How many people do you know in your class? You have 3 minutes to list as many people as you can! </h2>
+            <h2> Hyphenated names and apostrophes use spaces instead (e.g George O'Malley is George O Malley and Tyler Smith-Wesson is Tyler Smith Wesson)</h2>
+            <h2> Make sure to use proper capitalization (e.g john smith will not work, only John Smith) </h2>
+            <h3> Click "Initials" to reveal the initials of everyone. </h3>
+        </div>
+        <div id="enterBox">
+            <div id="title">How well do YOU know your class?!</div>
+            <input id ="myInput" type="text">
+            <div id="check"> Enter a name and hit enter </div>
+            <p id="scoreDisplay"> Score: </p>
+            <p id="timeDisplay"> Time: </p>
+            <button id="giveUp"> Give up! </button>
+        </div>
+        <button id="initials" style="text-align: center"> Initials </button>
+<!--        <button id="lastName" style="text-align: center"> Last Names </button>
+        <button id="photos" style="text-align: center"> Pictures </button>-->
+        <div id="col1"> </div>
+        <div id="col2"></div>
+        <div id ="col3"></div>
+        <div id="col4"></div>
+        <div id="col5"></div>
+        <script>
+            var input = document.getElementById("myInput");
+            var checkBox = document.getElementById("check");
+            var initials = document.getElementById("initials");
+            var lastName = document.getElementById("lastName");
+            var photos = document.getElementById("photos");
+            var gameOver = false;
+            initials.addEventListener("click", changeInitials, false);
+            var score = 0;
+            var scoreDisplay = document.getElementById("scoreDisplay");
+            var time = 180;
+            var timeDisplay = document.getElementById("timeDisplay");
+            var giveUp = document.getElementById("giveUp");
+            giveUp.addEventListener("click", endGame, false);
+            function endGame(){
+                gameOver = true;
+            }
+            var names = [
+                "Abby Doerger",
+                "Abigael Smith",
+                "Abishek Padwal",
+                "Adam Feller", ///???
+                "Adam Filiz",
+                "Aditya Gunda",
+                "Ailyn Monarrez", //???
+                "Alejandro Hernandez",
+                "Alex Parks",
+                "Alexander Archibald",
+                "Alexander Bailess",
+                "Alexander Cortinas",
+                "Alexander Canales-Rocha", //??
+                "Alison Dugan",
+                "Alison Lee",
+                "Aliyah Sanghvi",
+                "Allie Hughes",
+                "Allison Kramer",
+                "Amanda Dattalo", //???
+                "Amanda Smith",
+                "Amanda White",
+                "Amanda Tuazon",
+                "Amita Nguyen",
+                "Amulya Yerrapotu",
+                "Amy Baylis",
+                "Anvinh Tran",
+                "Andre Balance",
+                "Andreo Khouri", //??
+                "Andrew Cairns",
+                "Angel Farias",
+                "Angelica Mikl",
+                "Anna Banzer",
+                "Anna Messer", //??
+                "Anna Schaefer",
+                "Annalisa Aquino",//??
+                "Anne van Besouw",
+                "Anthony Rodman",
+                "Anthony Jackson", //??
+                "Arianna Ramirez",
+                "Arianna Mandelli",
+                "Arisbeth Gallardo",
+                "Arturo Fass",
+                "Ashley Ruiz", //?/
+                "Athreya Steiger",
+                "Aubrey DeHart",
+                "Audrey Berardi", //???
+                "Audrey Smith", 
+                "Austin Walsh",
+                "Bahman Engineer",
+                "Bailey Moore",
+                "Ben Kone",
+                "Bharathi Arasan",
+                "Blake Flovin",
+                "Blake Pierson",
+                "Bodie Knepp",
+                "Bradley Callas",
+                "Brandon Cramer",
+                "Brandon Llamas",
+                "Brenna McKinley",
+                "Brian Loos",
+                "Brian Milner",
+                "Briana Robles",
+                "Bridget Lewis", ///no
+                "Bumjin Kim",
+                "Caitlin Palacio",
+                "Caldon Williams",
+                "Caleb Kulman", //???
+                "Calvin Quittner",
+                "Calvin Ho",
+                "Cameron Kurtz",
+                "Cameron Dorcich",
+                "Camila de Pierola",
+                "Camille Daszynski",
+                "Candy Alvarez", //?
+                "Carly Jones",
+                "Carly Yniguez",
+                "Catherine Ho",
+                "Celina Leong",
+                "Chaitanya Pedada",
+                "Chandler Aitchison",
+                "Charles Zhang",
+                "Charles Victor",
+                "Chiara Caraccio",
+                "Christian Lau", //bye
+                "Christian Vu",
+                "Christina Martell",
+                "Christina Shah Nazarian",
+                "Christopher Romano",
+                "Claire Edelman",
+                "Cole Johnston", //rip
+                "Colin McKinnon",
+                "Collin Kaminski",
+                "Daniel Xiao",
+                "Daniel Scott",
+                "Daniel Guo",
+                "Danielle Panconi",
+                "Danielle Anne Balance",
+                "David Tu",
+                "David Tenorio",
+                "Delaney Morse",
+                "Dempsey Salazar",
+                "Denzel Villanueva",
+                "Derek Bauerle",
+                "Donovan Hart",
+                "Edward Sun",
+                "Elaine Xie",
+                "Elijah Wedlow",
+                "Elizabeth Morales",
+                "Elizabeth Deane",
+                "Elizabeth Kriens",
+                "Elizabeth Honton",
+                "Elizabeth Ekman",
+                "Elizabeth Shroyer",
+                "Elliott Picone", //nope
+                "Ember Oania Hopkins",
+                "Emily Malig",
+                "Emily Murray",
+                "Emma Chew",
+                "Emma Allegrucci",
+                "Emma Dapkus",
+                "Enrique Diaz",
+                "Eric Jimenez",
+                "Eric Horn",
+                "Erich Kull",
+                "Erika Yeager",
+                "Erin Fairley",
+                "Erin Weiner",
+                "Erin Jimenez",
+                "Esteban McDonald",
+                "Ethan Goodson",
+                "Ethan Han",
+                "Eva Masrani",
+                "Evan Lopez",
+                "Franchon Nicolas Warmack",
+                "Gabriel Mallari", //page 7
+                "Gabriella Segovia",
+                "Gian Pancipanci",
+                "Giancarlo Tomasello",
+                "Gina Tersini",
+                "Giulia Travostino",
+                "Gregory Pouquette",
+                "Gunnar Alvord",
+                "Haley Fetsch",
+                "Haley Anderson",
+                "Hannah Polayes",
+                "Hannah Villalpando",
+                "Hannah Anderson",
+                "Hannah McCabe",
+                "Harmen Kang",
+                "Harrison Beuselinck",//??
+                "Harrison Roberson",
+                "Harrison Eagle",
+                "Henry Rendler",
+                "Heramb Tamhankar",
+                "Howard Coffin",
+                "Ian Davoren",
+                "Ian Wilson",
+                "Iliana Portugal",
+                "Iliana Quezada",
+                "Isabel Braham",
+                "Isabela Zuniga",
+                "Isabella Mullaney",
+                "Isabella Orsi",
+                "Isabelle Cecilio",
+                "Ismail Shaik",
+                "Jacob Dewey",
+                "Jacob Dayvs Banuelos",
+                "Jacob Isaacs",
+                "Jacob Martinez",
+                "Jacob Mosko",
+                "Jacqueline Longanecker",
+                "Jahnavi Singh",
+                "Jahnay Anderson",
+                "James Divis",
+                "James Young",
+                "Jamie Albin",
+                "Jared Schmitzer",
+                "Jenna Sanfilippo",
+                "Jennifer Good",
+                "Jeremiah Mallari",
+                "Jerry Mathew",
+                "Jessica Wymbs",
+                "Jessica Lima",
+                "Jocelyn Woods",
+                "John Peckham",
+                "John Ivancovich",
+                "Johnathan Trujillo",
+                "Johnathan Pham",
+                "Johnathan B Pham",
+                "Jordan Jean",
+                "Jose Gonzalez",
+                "Josephine Rodriguez",
+                "Josh Kennedy",
+                "Joshua Smith",
+                "Josiah Panlilio",
+                "Julia Chizanskos",
+                "Julia Lemak",
+                "Julia Read",
+                "Julian Picar",
+                "Justin Mi",
+                "Justin Siu",
+                "Justin Collier",
+                "Justin Diaz",
+                "Justin Kunzel",
+                "Kaelyn Novak",
+                "Kai Hynes",
+                "Kaitlyn Funk",
+                "Kaitlyn Marie Ng",
+                "Kanella Pragastis",
+                "Karla Cano",
+                "Kathleen Gendotti",
+                "Kathy Leung",
+                "Katianna Pappas",
+                "Katie Saviage",
+                "Katrina Mari Rufin",
+                "Kayla Fernandez",
+                "Kayla Meacham",
+                "Kehlin Lee",
+                "Kendall Earnshaw",
+                "Kenji Nagase",
+                "Kevin Carrisosa",
+                "Kian Pohorski",
+                "Kim Luong",
+                "Klara Barbarossa",
+                "Krista De Guzman",
+                "Kristyna Otto",
+                "Kyle De Mattei",
+                "Kyler Peake",
+                "Kylie Rego",
+                "Larissa Olivas",
+                "Laura Georgiev",
+                "Laura Mejia",
+                "Lauren Gengarella",
+                "Lauren Lux",
+                "Lauren Speckman",
+                "Lauren Ceja",
+                "Lauren Arcolino",
+                "Leanicia Jones",
+                "Lee Jansen",
+                "Lillian Dennison",
+                "Lily Guttman",
+                "Lindesy Goubeaux",
+                "Louis Lombardo",
+                "MacKenzie Savage",
+                "Madeleine Fernando",
+                "Madeleine Cha",
+                "Madeline Bailey",
+                "Madison O Carroll",
+                "Madison Cairns",
+                "Marcus Ho",
+                "Marcus Lee",
+                "Margarita Zvereva",
+                "Margo Salah",
+                "Maria Kesovija",
+                "Maricella Gonzalez",
+                "Martha Serrano",
+                "Mary Bonini",
+                "Matthew Marani",
+                "Matthew Kreck", //??
+                "Matthew Vaquera",
+                "Matthew Sorich",
+                "Matthew Tofano",
+                "Matthew Hoshiko",
+                "Matthew Kelleher",
+                "Matthew Hoffman",
+                "Matthew Downing",
+                "Matthew Hunt",
+                "Max Cronce", //?
+                "Maya Washington",
+                "Maya Pia Hoyer",
+                "McKenzie Grant",
+                "McKinsey Thorpe",
+                "Medha Somayaji",
+                "Meredith Roberts",
+                "Merin Kolte",
+                "Michael Nicosia",
+                "Michael Wang",
+                "Michelle Chaires",
+                "Michelle You",
+                "Michelle Booth",
+                "Mikeila Forney", //??
+                "Mitchel Downey",
+                "Mitchell Newman",
+                "Mitchell Koontz",
+                "Monica Sabatelli",
+                "Morganne McKennan", ///nope
+                "Myles Garcia",
+                "Naja DeSilva",
+                "Natalia Jones",
+                "Natalie Goodson",
+                "Natasha Tolia",
+                "Natasha Kuo",
+                "Nathan Lam",
+                "Nathan Chandler",
+                "Nathan Lakritz",
+                "Nathan Iruegas",
+                "Nicholas Kirst",
+                "Nicholas Mohammadian",
+                "Nicholas Palka",
+                "Nicholas LaBruna",
+                "Nicholas Palacios",
+                "Nicholas McCord",
+                "Nicholas Ogden",
+                "Nicholas Aiello",
+                "Nickolas Des Champs",
+                "Nicolas Noriega",
+                "Nicole Marquez",
+                "Nicole Prabhu",
+                "Nihaal Kumar",
+                "Niharika Bhat",
+                "Nikhil Aggarwal",
+                "Nikita Vemuri",
+                "Nikolai Flowers",
+                "Nikolas Eppel",
+                "Noah Fletcher",
+                "Noah Kane Manuel",
+                "Nolan Mifsud",
+                "Ohsun Kwon",
+                "Olivia Worthington",
+                "Olivia Hendry",
+                "Orlandus Miller",
+                "Paloma Calvillo",
+                "Parth Doshi",
+                "Paul Yamamoto",
+                "Philip Brazelton",
+                "Pierre Kreitem",
+                "Polina Edmunds",
+                "Poulomi Banerjee",
+                "Pranav Govindaraju",
+                "Pravin Naik",
+                "Preston Corral",
+                "Priyal Patel",
+                "Rachel Wong",
+                "Rachel Taylor",
+                "Rachel Fong",
+                "Rachel Dovek",
+                "Rahul Butani",
+                "Rahul Rameshbabu",
+                "Raina Patel",
+                "Rajiv Dharmasena",
+                "Ramzi Awad",
+                "Reiley Marko Eick",
+                "Relja Misita",
+                "Renee Yamasaki",
+                "Rishab Iyer",
+                "Rithvik Vobbilisetty",//??
+                "Ritwik Dutta",
+                "Robin Gallaher",
+                "Rocio Bonilla",
+                "Rohit Kumar",
+                "Rose Bueno",
+                "Ryan Condensa",
+                "Ryan Sutton",
+                "Ryan Le",
+                "Samantha Baker",
+                "Samantha Gorjanc",
+                "Samantha Maria Zamora",
+                "Sameehita Mohan",
+                "Samuel Serra",
+                "Samuel Mesfin",
+                "Sarah Petford",
+                "Satoshi Akiba",
+                "Scarlett Hartmann",
+                "Sean Lim",
+                "Seon Jae Kim",
+                "Shana Mathew",
+                "Shannon M O Hara",
+                "Shannon N O Hara",
+                "Shayne Jones",
+                "Shining Liu",
+                "Siddharth Kulkarni",
+                "Sophia Rodriguez",
+                "Spencer King",
+                "Sravya Rallapalli",
+                "Stefan Soriano",
+                "Stephanie Kerkeles",
+                "Steven DeSilva",
+                "Steven Nicolas",
+                "Sumeet Bansal",
+                "Sydney McIntyre",
+                "Taylor Boyle",
+                "Terry Young",
+                "Therese Powers",
+                "Thomas Gribbin",
+                "Tiana Travis",
+                "Tiffany A Chan",
+                "Tiffany M Chan",
+                "Travis La France",
+                "Trevor Robbins",
+                "Trevor Lawson",
+                "Treyton Salom",
+                "Tristan Caldwell",
+                "Tyler Trees",
+                "Tyler Farrell",
+                "Vanessa Burns",
+                "Vanessa Padilla Tejero",
+                "Victoria Rice",
+                "Vincent Leuzze",
+                "Virginia Barkas",
+                "Whitney Larsen",
+                "Yahya Bhatti",
+                "Yash Wani",
+                "Yeshwini Cherukuri"];
+            var nameSlots =[];
+            window.setInterval(timePass, 1000);
+            for(var i = 0; i < names.length; i++){
+                var para = document.createElement("P");
+                //var t = document.createTextNode(names[i]);
+                var tempString = "";
+                for(var j = 0; j < names[i].length; j++){
+                    if(names[i].charAt(j) === ' '){
+                        tempString += "_";
+                    }
+                    else{
+                        tempString += "-";
+                    }
+                }
+                para.innerHTML = tempString;
+                para.setAttribute("id", "name" + i);
+                nameSlots.push(para);
+                if(i <= 90){            
+                //para.appendChild(t);
+                    document.getElementById("col1").appendChild(para);
+                }
+                else if(i > 90 && i <= 180){
+                    document.getElementById("col2").appendChild(para);
+                }
+                else if(i > 180 && i <= 270){
+                    document.getElementById("col3").appendChild(para);
+                }
+                else if(i > 270 && i <= 360){
+                    document.getElementById("col4").appendChild(para);
+                }
+                else if(i > 360 && i < names.length){
+                    document.getElementById("col5").appendChild(para);
+                }
+                //para.innerHTML = "hello";
+            }
+            window.addEventListener("keydown", keydownHandler, false);
+            function timePass(){
+                
+                if(time === 0){
+                    gameOver = true;
+                    
+                }
+                if(time > 0){
+                    time--;
+                    timeDisplay.innerHTML = "Time: " + time;
+                }
+                if(gameOver === true){
+                    for(var i = 0; i < nameSlots.length; i++){
+                        
+                            nameSlots[i].innerHTML = names[i];
+                        
+                    }
+                    checkBox.innerHTML = "<b>You knew: " + score + " out of 428 of your class mates! \n Get to know more people in these last weeks of school!</b>";
+                    time = 0;
+                    gameOver = false;
+                }
+            }
+            function keydownHandler(event){
+                console.log("pressed");
+                if(event.keyCode === 13){
+                    nameCheck();
+                }
+            }
+            function changeInitials(){
+                
+                    for(var i = 0; i < nameSlots.length; i++){
+                        var tempString="";
+                        for(var j = 0; j < names[i].length; j++){
+                            if(j === 0){
+                                tempString += names[i].charAt(j);
+                            }
+                            else if(names[i].charAt(j) === ' '){
+                                tempString += "_";
+                                tempString += names[i].charAt(j+1);
+                                j++;
+                            }
+                            else{
+                                tempString += nameSlots[i].innerHTML.charAt(j);
+                            }
+                        }
+                        nameSlots[i].innerHTML = tempString;
+                    }               
+            }
+            function nameCheck(){
+                var count = 0;
+                for(var i = 0; i < names.length; i++){
+                   if(input.value === names[i]){
+                       nameSlots[i].innerHTML = names[i];
+                       checkBox.style.backgroundColor = "green";
+                       checkBox.innerHTML = "Yes!";
+                       score++;
+                       input.value = "";
+                       location.href = "#";
+                       location.href = "#" + nameSlots[i].id;
+                       setTimeout(makeWhite, 1000);
+                   }
+                   else{
+                       count++;
+                   }
+               }   
+               if(count === names.length){
+                    checkBox.style.backgroundColor = "red";
+                    checkBox.innerHTML = "Nope";
+                    input.value = "";
+                    setTimeout(makeWhite, 1000);
+               }
+               scoreDisplay.innerHTML = "Score: " + score;
+            }
+            
+            function makeWhite(){
+                checkBox.style.backgroundColor = "white";
+                checkBox.innerHTML = "Enter a name and hit enter";
+            }
+            
+        </script>
+    </body>
+</html>
