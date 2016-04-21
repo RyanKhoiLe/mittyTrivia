@@ -513,12 +513,13 @@ and open the template in the editor.
                     }
                     checkBox.innerHTML = "<b>You knew: " + score + " out of 428 of your class mates! \n Get to know more people in these last weeks of school!</b>";
                     time = 0;
-                    gameOver = false;
+                    
                 }
             }
             function keydownHandler(event){
                 console.log("pressed");
                 if(event.keyCode === 13){
+                    if(gameOver === false)
                     nameCheck();
                 }
             }
