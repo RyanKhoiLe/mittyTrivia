@@ -543,6 +543,9 @@ and open the template in the editor.
                     }               
             }
             function nameCheck(){
+                if(gameOver === true){
+                     return;
+                }
                 var count = 0;
                 for(var i = 0; i < names.length; i++){
                    if(input.value === names[i]){
