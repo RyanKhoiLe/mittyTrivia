@@ -4,12 +4,177 @@ Created by Khoi Le
 -->
 <html>
     <head>
-        <title>Teacher First Names</title>
+        <title>Teacher's Names</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="classNamesCSS.css">
     </head>
     <body>
-
+        <div id="header">
+            <h1> Welcome to Mitty trivia! </h1>
+            <h2> How many teacher's names do you know? You have 1 minute to list as many people as you can! </h2>
+            <h2> Make sure to use proper capitalization (e.g john smith will not work, only John Smith) </h2>
+            <h3> Click "Initials" to reveal the initials of everyone. Everyone's names are as on mymitty </h3>
+            <h3> <b>HIGH SCORE:  by KHOI RYAN LE</b></h3>
+            <p>If you get a higher score, please screen shot and email to ryanle16@mittymonarch.com</p>
+            <a href="index.html"> RETURN HOME </a>
+        </div>
+        <div id="enterBox">
+            <div id="title">How well do YOU know your teachers?!</div>
+            <input id ="myInput" type="text">
+            <div id="check"> Enter a name and hit enter </div>
+            <p id="scoreDisplay"> Score: </p>
+            <p id="timeDisplay"> Time: </p>
+            <button id="giveUp"> Give up! </button>
+        </div>
+        <button id="initials" style="text-align: center"> Initials </button>
+<!--        <button id="lastName" style="text-align: center"> Last Names </button>
+        <button id="photos" style="text-align: center"> Pictures </button>-->
+        <div id="col1"> </div>
+        <div id="col2"></div>
+        <div id ="col3"></div>
+        <div id="col4"></div>
+        <div id="col5"></div>
+        <script>
+            var input = document.getElementById("myInput");
+            var checkBox = document.getElementById("check");
+            var initials = document.getElementById("initials");
+            var lastName = document.getElementById("lastName");
+            var photos = document.getElementById("photos");
+            var gameOver = false;
+            initials.addEventListener("click", changeInitials, false);
+            var score = 0;
+            var scoreDisplay = document.getElementById("scoreDisplay");
+            var time = 190;
+            var timeDisplay = document.getElementById("timeDisplay");
+            var giveUp = document.getElementById("giveUp");
+            giveUp.addEventListener("click", endGame, false);
+            function endGame(){
+                gameOver = true;
+            }
+            var names = [
+                "Mike Greene",//greene
+                "Matt DePalma",
+                "Kayla Monk",
+                ];
+            var nameSlots =[];
+            window.setInterval(timePass, 1000);
+            for(var i = 0; i < names.length; i++){
+                var para = document.createElement("P");
+                //var t = document.createTextNode(names[i]);
+                var tempString = "";
+                for(var j = 0; j < names[i].length; j++){
+                    if(names[i].charAt(j) === ' '){
+                        tempString += "_";
+                    }
+                    else{
+                        tempString += "-";
+                    }
+                }
+                para.innerHTML = tempString;
+                para.setAttribute("id", "name" + i);
+                nameSlots.push(para);
+                if(i <= 90){            
+                //para.appendChild(t);
+                    document.getElementById("col1").appendChild(para);
+                }
+                else if(i > 90 && i <= 180){
+                    document.getElementById("col2").appendChild(para);
+                }
+                else if(i > 180 && i <= 270){
+                    document.getElementById("col3").appendChild(para);
+                }
+                else if(i > 270 && i <= 360){
+                    document.getElementById("col4").appendChild(para);
+                }
+                else if(i > 360 && i < names.length){
+                    document.getElementById("col5").appendChild(para);
+                }
+                //para.innerHTML = "hello";
+            }
+            window.addEventListener("keydown", keydownHandler, false);
+            function timePass(){
+                
+                if(time === 0){
+                    gameOver = true;
+                    
+                }
+                if(time > 0){
+                    time--;
+                    timeDisplay.innerHTML = "Time: " + time;
+                }
+                if(gameOver === true){
+                    for(var i = 0; i < nameSlots.length; i++){
+                        
+                            nameSlots[i].innerHTML = names[i];
+                        
+                    }
+                    checkBox.innerHTML = "<b>You knew: " + score + " out of your teachers! </b>";
+                    time = 0;
+                    
+                }
+            }
+            function keydownHandler(event){
+                console.log("pressed");
+                if(event.keyCode === 13){
+                    if(gameOver === false)
+                    nameCheck();
+                }
+            }
+            function changeInitials(){
+                
+                    for(var i = 0; i < nameSlots.length; i++){
+                        var tempString="";
+                        for(var j = 0; j < names[i].length; j++){
+                            if(j === 0){
+                                tempString += names[i].charAt(j);
+                            }
+                            else if(names[i].charAt(j) === ' '){
+                                tempString += "_";
+                                tempString += names[i].charAt(j+1);
+                                j++;
+                            }
+                            else{
+                                tempString += nameSlots[i].innerHTML.charAt(j);
+                            }
+                        }
+                        nameSlots[i].innerHTML = tempString;
+                    }               
+            }
+            function nameCheck(){
+                if(gameOver === true){
+                     return;
+                }
+                var count = 0;
+                for(var i = 0; i < names.length; i++){
+                   if(input.value === names[i]){
+                       nameSlots[i].innerHTML = names[i];
+                       checkBox.style.backgroundColor = "green";
+                       checkBox.innerHTML = "Yes!";
+                       score++;
+                       input.value = "";
+                       location.href = "#";
+                       location.href = "#" + nameSlots[i].id;
+                       setTimeout(makeWhite, 1000);
+                   }
+                   else{
+                       count++;
+                   }
+               }   
+               if(count === names.length){
+                    checkBox.style.backgroundColor = "red";
+                    checkBox.innerHTML = "Nope";
+                    input.value = "";
+                    setTimeout(makeWhite, 1000);
+               }
+               scoreDisplay.innerHTML = "Score: " + score;
+            }
+            
+            function makeWhite(){
+                checkBox.style.backgroundColor = "white";
+                checkBox.innerHTML = "Enter a name and hit enter";
+            }
+            
+        </script>
     </body>
 </html>
