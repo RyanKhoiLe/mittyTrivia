@@ -230,7 +230,7 @@ Created by Khoi Le
                 }
                 var count = 0;
                 for(var i = 0; i < names.length; i++){
-                   if(input.value === names[i].substring(0,names[i].indexOf(" "))){
+                   if(namesOn[i]==false && input.value === names[i].substring(0,names[i].indexOf(" "))){
                        nameSlots[i].innerHTML = names[i];
                        checkBox.style.backgroundColor = "green";
                        checkBox.innerHTML = "Yes!";
@@ -239,6 +239,7 @@ Created by Khoi Le
                        location.href = "#";
                        location.href = "#" + nameSlots[i].id;
                        setTimeout(makeWhite, 1000);
+                       namesOn[i] = true;
                    }
                    else{
                        count++;
