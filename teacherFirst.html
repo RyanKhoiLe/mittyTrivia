@@ -52,6 +52,7 @@ Created by Khoi Le
             function endGame(){
                 gameOver = true;
             }
+            
             var names = [
                 "Bill Abb",
                 "Michael Accorsi",
@@ -130,6 +131,11 @@ Created by Khoi Le
                 "Keith Matthews"
                 ];
             var nameSlots =[];
+            var namesOn = [];
+            for(var i = 0; i < names.length; i++){
+                namesOn[i].push(true);
+                namesOn[i] = false;
+            }
             window.setInterval(timePass, 1000);
             for(var i = 0; i < names.length; i++){
                 var para = document.createElement("P");
