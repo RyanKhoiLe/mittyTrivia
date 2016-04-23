@@ -136,12 +136,17 @@ Created by Khoi Le
                 var para = document.createElement("P");
                 //var t = document.createTextNode(names[i]);
                 var tempString = "";
+                var space = false;
                 for(var j = 0; j < names[i].length; j++){
+                    if(space == false){
+                        tempString += "-";
+                    }
                     if(names[i].charAt(j) === ' '){
                         tempString += "_";
+                        space = true;
                     }
-                    else{
-                        tempString += "-";
+                    else if(space == true){
+                        tempString += names[i].charAt(j);
                     }
                 }
                 para.innerHTML = tempString;
