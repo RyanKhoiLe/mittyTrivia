@@ -12,8 +12,9 @@ Created by Khoi Le
     <body>
         <div id="header">
             <h1> Welcome to Mitty trivia! </h1>
-            <h2> How many teacher's names do you know? You have 2 minutes to list as many people as you can! </h2>
-            <h2> Make sure to use proper capitalization (e.g john smith will not work, only John Smith) </h2>
+            <h2> How many teachers' FIRST names do you know? You have 2 minutes to list as many people as you can! </h2>
+            <h2> Make sure to use proper capitalization (e.g john will not work, only John) </h2>
+            <h2> Two word first names have the space removed (e.g John Michael will not work, only JohnMichael) </h2>
             <h3> Click "Initials" to reveal the initials of everyone. Everyone's names are as on mymitty </h3>
             <h3> <b>HIGH SCORE:  by KHOI RYAN LE</b></h3>
             <p>If you get a higher score, please screen shot and email to ryanle16@mittymonarch.com</p>
@@ -45,7 +46,7 @@ Created by Khoi Le
             initials.addEventListener("click", changeInitials, false);
             var score = 0;
             var scoreDisplay = document.getElementById("scoreDisplay");
-            var time = 190;
+            var time = 130;
             var timeDisplay = document.getElementById("timeDisplay");
             var giveUp = document.getElementById("giveUp");
             giveUp.addEventListener("click", endGame, false);
@@ -286,11 +287,11 @@ Created by Khoi Le
                             if(j === 0){
                                 tempString += names[i].charAt(j);
                             }
-                            else if(names[i].charAt(j) === ' '){
-                                tempString += "_";
-                                tempString += names[i].charAt(j+1);
-                                j++;
-                            }
+                            // else if(names[i].charAt(j) === ' '){
+                            //     tempString += "_";
+                            //     tempString += names[i].charAt(j+1);
+                            //     j++;
+                            // }
                             else{
                                 tempString += nameSlots[i].innerHTML.charAt(j);
                             }
