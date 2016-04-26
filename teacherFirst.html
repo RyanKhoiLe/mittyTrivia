@@ -218,12 +218,13 @@ Created by Khoi Le
                 var tempString = "";
                 var space = false;
                 for(var j = 0; j < names[i].length; j++){
-                    if(space == false){
-                        tempString += "-";
-                    }
+                    
                     if(names[i].charAt(j) === ' '){
                         tempString += "_";
                         space = true;
+                    }
+                    if(space == false){
+                        tempString += "-";
                     }
                     else if(space == true){
                         tempString += names[i].charAt(j);
